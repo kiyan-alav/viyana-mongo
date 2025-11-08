@@ -1,0 +1,43 @@
+{
+  "name": "viyana-mongo",
+  "version": "1.0.0",
+  "description": "API backend for Viyana project using Express & MongoDB",
+  "main": "./src/server.ts",
+  "scripts": {
+    "dev": "ts-node src/server.ts",
+    "start": "node dist/server.js",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiyan-alav/viyana-mongo.git"
+  },
+  "author": "Kiyan Alavi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kiyan-alav/viyana-mongo/issues"
+  },
+  "homepage": "https://github.com/kiyan-alav/viyana-mongo#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.3",
+    "multer": "^2.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.10.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
