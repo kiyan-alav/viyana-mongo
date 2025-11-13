@@ -1,7 +1,7 @@
 src/
  ├─ config/
- │   ├─ db.ts              # اتصال به MongoDB
- │   ├─ env.ts             # تنظیمات env (dotenv)
+ │   ├─ db.ts 
+ │   ├─ env.ts
  │
  ├─ modules/
  │   ├─ user/
@@ -20,10 +20,10 @@ src/
  │   └─ auth.ts
  │
  ├─ utils/
- │   ├─ ApiResponse.ts     # کلاس استاندارد برای ریسپانس
- │   ├─ ApiError.ts        # کلاس خطاهای کاستوم
- │   ├─ catchAsync.ts      # هندلر async برای کنترل خطا
+ │   ├─ ApiResponse.ts
+ │   ├─ ApiError.ts
+ │   ├─ catchAsync.ts
  │   └─ logger.ts
  │
- ├─ app.ts                 # تنظیمات express (middleware, routes)
- └─ server.ts              # استارت سرور
+ ├─ app.ts
+ └─ server.ts
