@@ -1,9 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-interface ICategory extends Document {
-  name: string;
-  image: string;
-}
+import { ICategory } from "./category.types";
 
 const CategorySchema = new Schema<ICategory>({
   name: {

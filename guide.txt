@@ -6,9 +6,13 @@ src/
  ├─ modules/
  │   ├─ user/
  │   │   ├─ user.model.ts
- │   │   ├─ user.controller.ts
+ │   │   ├─ user.controller.user.ts
+ │   │   ├─ user.controller.admin.ts
+ │   │   ├─ user.controller.core.ts
  │   │   ├─ user.service.ts
- │   │   ├─ user.routes.ts
+ │   │   ├─ user.routes.user.ts
+ │   │   ├─ user.routes.admin.ts
+ │   │   ├─ user.routes.core.ts
  │   │   └─ user.validation.ts
  │   │   └─ user.types.ts
  │   └─ product/

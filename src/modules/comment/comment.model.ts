@@ -1,13 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-interface IComment extends Document {
-  rate: number;
-  commentBody: string;
-  email: string;
-  product: mongoose.Types.ObjectId;
-  user: mongoose.Types.ObjectId;
-  status: "PENDING" | "ACCEPTED" | "REJECTED";
-}
+import { IComment } from "./comment.types";
 
 const CommentSchema = new Schema<IComment>(
   {

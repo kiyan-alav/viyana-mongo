@@ -1,18 +1,5 @@
-import mongoose, { Document, Schema } from "mongoose";
-
-interface IUser extends Document {
-  firstName: string;
-  lastName: string;
-  fullName: string;
-  mobile: string;
-  email: string;
-  password: string;
-  role: "USER" | "ADMIN";
-  refreshToken?: string;
-  avatar?: string;
-  isActive: boolean;
-  orders?: mongoose.Types.ObjectId;
-}
+import mongoose, { Schema } from "mongoose";
+import { IUser } from "./user.types";
 
 const UserSchema = new Schema<IUser>(
   {
@@ -65,6 +52,10 @@ UserSchema.virtual("orders", {
   ref: "Order",
   localField: "_id",
   foreignField: "user",
+});
+
+UserSchema.virtual("fullName").get(function (this: IUser) {
+  return `${this.firstName} ${this.lastName}`;
 });
 
 const User = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);

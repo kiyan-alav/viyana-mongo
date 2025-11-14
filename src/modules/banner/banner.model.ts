@@ -1,10 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-interface IBanner extends Document {
-  link: string;
-  image: string;
-  type: "SQUARE" | "RECTANGLE";
-}
+import { IBanner } from "./banner.types";
 
 const BannerSchema = new Schema<IBanner>({
   link: {

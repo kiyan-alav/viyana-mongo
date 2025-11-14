@@ -1,11 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-interface IMessage extends Document {
-  sender: string;
-  email: string;
-  title: string;
-  text: string;
-}
+import { IMessage } from "./message.types";
 
 const MessageSchema = new Schema<IMessage>(
   {

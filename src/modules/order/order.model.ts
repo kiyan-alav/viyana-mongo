@@ -1,18 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-
-interface IOrderItem {
-  product: mongoose.Types.ObjectId;
-  quantity: number;
-}
-
-interface IOrder extends Document {
-  user: mongoose.Types.ObjectId;
-  orderNumber: string;
-  status: "PENDING" | "ACCEPTED" | "CANCELED";
-  items: IOrderItem[];
-  totalQuantity: number;
-  totalPrice: number;
-}
+import { IOrder } from "./order.types";
 
 const OrderSchema = new Schema<IOrder>(
   {
