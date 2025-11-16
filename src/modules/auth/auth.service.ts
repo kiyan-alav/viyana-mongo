@@ -1,3 +1,5 @@
+import jsonwebtoken from "jsonwebtoken";
+import { ENV } from "../../configs/env";
 import { ApiError } from "../../utils/ApiError";
 import {
   generateAccessToken,
@@ -5,8 +7,14 @@ import {
   hashPassword,
   verifyPassword,
 } from "../../utils/auth";
+import { getAvatarUrl } from "../../utils/file";
 import User from "../user/user.model";
-import { CreateUserData, LoginData } from "./auth.types";
+import {
+  AuthRequest,
+  CreateUserData,
+  JwtPayloadCustom,
+  LoginData,
+} from "./auth.types";
 
 export const authService = {
   async register(data: CreateUserData & { avatar?: string }) {
@@ -29,12 +37,14 @@ export const authService = {
       role,
     });
   },
+
   async login(data: LoginData) {
     const { identifier, password } = data;
 
     const existingUser = await User.findOne({
       $or: [{ email: identifier }, { mobile: identifier }],
-    });
+    }).select("-__v");
+
     if (!existingUser) throw new ApiError(404, "User not found!");
 
     const isPasswordMatch = await verifyPassword(
@@ -47,17 +57,56 @@ export const authService = {
     }
 
     const accessToken = generateAccessToken({
-      id: existingUser._id,
+      id: existingUser._id.toString(),
       role: existingUser.role,
     });
+
     const refreshToken = generateRefreshToken({
-      id: existingUser._id,
+      id: existingUser._id.toString(),
       role: existingUser.role,
     });
+
+    const userPlain = existingUser.toObject();
+    Reflect.deleteProperty(userPlain, "password");
+    Reflect.deleteProperty(userPlain, "id");
+
+    userPlain.avatar = getAvatarUrl(userPlain.avatar);
+
+    await User.findByIdAndUpdate(existingUser._id, {
+      $set: {
+        refreshToken: refreshToken,
+      },
+    });
+
     return {
       accessToken,
       refreshToken,
-      existingUser,
+      userPlain,
     };
+  },
+
+  async getMe(req: AuthRequest) {
+    const user = await User.findById(req.user?.id);
+    return user;
+  },
+
+  async refreshToken(req: AuthRequest) {
+    const user = await User.findById(req.user?.id);
+
+    const decoded = jsonwebtoken.verify(
+      user.refreshToken,
+      ENV.REFRESH_TOKEN_KEY
+    ) as JwtPayloadCustom;
+
+    if (!decoded) {
+      throw new ApiError(401, "Wrong token");
+    }
+
+    const newAccessToken = generateAccessToken({
+      id: user._id,
+      role: user.role,
+    });
+
+    return newAccessToken;
   },
 };
