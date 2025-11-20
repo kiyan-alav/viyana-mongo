@@ -1,0 +1,17 @@
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Create a new account
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/RegisterUser"
+      responses:
+        "201":
+          $ref: "#/components/responses/Created"
+        "400":
+          $ref: "#/components/responses/BadRequest"

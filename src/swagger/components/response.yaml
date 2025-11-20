@@ -1,0 +1,6 @@
+components:
+  responses:
+    Created:
+      description: Resource created successfully
+    BadRequest:
+      description: Bad request

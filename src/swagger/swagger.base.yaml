@@ -1,0 +1,11 @@
+openapi: 3.1.0
+info:
+  title: Viyana API
+  version: 1.0.0
+  description: Main API documentation
+servers:
+  - url: http://localhost:5000/docs
+    description: Local server
+tags:
+  - name: Auth
+    # description: Authentication endpoints
