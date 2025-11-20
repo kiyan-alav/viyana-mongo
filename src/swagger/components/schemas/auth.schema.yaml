@@ -2,21 +2,40 @@ components:
   schemas:
     RegisterUser:
       type: object
-      required:
-        - username
-        - password
-        - email
       properties:
-        username:
+        firstName:
           type: string
-          minLength: 3
-          example: kian_user
+          example: kiyan
+        lastName:
+          type: string
+          example: alavi
+        email:
+          type: string
+          format: email
+          example: "kian@example.com"
+        mobile:
+          type: string
+          example: "09365584552"
         password:
           type: string
           format: password
           minLength: 6
           example: "123456"
-        email:
+        confirm:
           type: string
-          format: email
-          example: "kian@example.com"
+          format: password
+          minLength: 6
+          example: "123456"
+        avatar:
+          type: string
+          format: binary
+    LoginUser:
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: email / mobile
+        password:
+          type: string
+          format: password
+        

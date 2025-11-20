@@ -16,12 +16,12 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-setupSwagger(app);
-
 // Routes
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
 
 // Error Handler
 app.use(errorHandler);
+
+setupSwagger(app);
 
 export default app;

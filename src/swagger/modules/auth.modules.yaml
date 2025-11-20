@@ -15,3 +15,45 @@ paths:
           $ref: "#/components/responses/Created"
         "400":
           $ref: "#/components/responses/BadRequest"
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login to account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/LoginUser"
+      responses:
+        "200":
+          $ref: "#/components/responses/Created"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+  /auth/me:
+    get:
+      tags:
+        - Auth
+      summary: User info
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/Created"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+  /auth/refresh-token:
+    get:
+      tags:
+        - Auth
+      summary: Get new token
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/Created"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"

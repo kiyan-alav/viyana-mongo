@@ -2,6 +2,10 @@ components:
   schemas:
     ErrorResponse:
       type: object
+      required:
+        - success
+        - message
+        - data
       properties:
         success:
           type: boolean
@@ -9,6 +13,7 @@ components:
         message:
           type: string
           example: Something went wrong
-        statusCode:
-          type: number
-          example: 400
+        data:
+          type: "null"
+          nullable: true
+          example: null
