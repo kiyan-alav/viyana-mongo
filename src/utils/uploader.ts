@@ -2,27 +2,26 @@ import fs from "fs";
 import multer from "multer";
 import path from "path";
 
-const avatarsDir = path.join(
-  __dirname,
-  "..",
-  "..",
-  "public",
-  "users",
-  "avatars"
-);
+export const makeUploader = (folder: string) => {
+  const uploadDir = path.join(__dirname, "..", "..", "public", folder);
 
-if (!fs.existsSync(avatarsDir)) {
-  fs.mkdirSync(avatarsDir, { recursive: true });
-}
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(avatarsDir));
-  },
-  filename: function (req, file, cb) {
-    const uniqueName = Date.now() + "-" + file.originalname;
-    cb(null, uniqueName);
-  },
-});
+  const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, uploadDir);
+    },
+    filename: function (req, file, cb) {
+      const ext = path.extname(file.originalname);
+      const uniqueName = Date.now() + "-" + ext;
+      cb(null, uniqueName);
+    },
+  });
 
-export const upload = multer({ storage });
+  return multer({ storage });
+};
+
+export const userAvatarUpload = makeUploader("users/avatars");
+export const bannerUpload = makeUploader("banners");

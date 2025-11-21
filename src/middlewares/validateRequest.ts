@@ -4,9 +4,10 @@ import { ApiError } from "../utils/ApiError";
 
 export const validateRequest =
   (schema: ZodType<any>, property: "body" | "query" | "params" = "body") =>
-  (req: Request, res: Response, next: NextFunction) => {
+  async (req: Request, res: Response, next: NextFunction) => {
     try {
-      schema.parse(req[property] || {});
+      const result = await schema.parseAsync(req[property] || {});
+      req[property] = result;
       next();
     } catch (err) {
       if (err instanceof ZodError) {

@@ -61,3 +61,5 @@ dump/
 
 # --- Optional: Docker ---
 docker-compose.override.yml
+
+public/*

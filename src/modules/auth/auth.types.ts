@@ -12,7 +12,7 @@ export interface CreateUserData {
 
 export interface LoginData {
   identifier: string;
-  password: string
+  password: string;
 }
 
 export interface AuthRequest extends Request {

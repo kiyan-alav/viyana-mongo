@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { authMiddleware } from "../../middlewares/auth";
 import { validateRequest } from "../../middlewares/validateRequest";
-import { upload } from "../../utils/uploader";
+import { userAvatarUpload } from "../../utils/uploader";
 import { authController } from "./auth.controller";
 import { loginSchema, registerSchema } from "./auth.validation";
 
@@ -9,7 +9,7 @@ const authRouter = Router();
 
 authRouter.post(
   "/register",
-  upload.single("avatar"),
+  userAvatarUpload.single("avatar"),
   validateRequest(registerSchema, "body"),
   authController.register
 );

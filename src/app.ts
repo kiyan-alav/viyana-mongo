@@ -4,22 +4,28 @@ import express from "express";
 import path from "path";
 import { errorHandler } from "./middlewares/errorHandler";
 import authRouter from "./modules/auth/auth.routes";
+import bannerAdminRouter from "./modules/banner/banner.routes.admin";
 import { setupSwagger } from "./swagger/swagger";
+import bannerCoreRouter from "./modules/banner/banner.routes.core";
 
 const app = express();
 
-app.use(
-  "/users/avatars",
-  express.static(path.join(__dirname, "..", "public", "users", "avatars"))
-);
+app.use("/public", express.static(path.join(__dirname, "..", "public")));
 app.use(cors());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Routes
+/**
+ * ! Routes
+ */
+// ! Auth
 app.use("/api/auth", authRouter);
 
-// Error Handler
+// ! Banner
+app.use("/api/admin/banner", bannerAdminRouter);
+app.use("/api/banner", bannerCoreRouter);
+
+// ! Error Handler
 app.use(errorHandler);
 
 setupSwagger(app);
