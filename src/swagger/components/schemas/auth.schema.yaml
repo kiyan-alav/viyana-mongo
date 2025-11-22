@@ -38,4 +38,3 @@ components:
         password:
           type: string
           format: password
-        

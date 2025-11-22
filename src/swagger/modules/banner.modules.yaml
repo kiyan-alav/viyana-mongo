@@ -1,0 +1,100 @@
+paths:
+  /admin/banner/list:
+    get:
+      tags:
+        - Admin => Banners
+      summary: Get list of banners
+      security:
+        - BearerAuth: []
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+        "403":
+          $ref: "#/components/responses/NotAllowed"
+
+  /admin/banner:
+    post:
+      tags:
+        - Admin => Banners
+      summary: Create a new banner
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/CreateBanner"
+      responses:
+        "201":
+          $ref: "#/components/responses/Created"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+        "403":
+          $ref: "#/components/responses/NotAllowed"
+
+  /admin/banner/{id}:
+    put:
+      tags:
+        - Admin => Banners
+      summary: Update existing banner
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/UpdateBanner"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+        "403":
+          $ref: "#/components/responses/NotAllowed"
+
+    delete:
+      tags:
+        - Admin => Banners
+      summary: Delete banner by id
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+        "403":
+          $ref: "#/components/responses/NotAllowed"
+
+  /banner/list:
+    get:
+      tags:
+        - Banners
+      summary: Get list of banners
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"

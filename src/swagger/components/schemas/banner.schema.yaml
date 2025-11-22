@@ -1,0 +1,36 @@
+components:
+  schemas:
+    CreateBanner:
+      type: object
+      required:
+      - link
+      - type
+      - image
+      properties:
+        link:
+          type: string
+          example: "https://example.com"
+        type:
+          type: string
+          enum:
+            - RECTANGLE
+            - SQUARE
+          example: RECTANGLE
+        image:
+          type: string
+          format: binary
+    UpdateBanner:
+      type: object
+      properties:
+        link:
+          type: string
+          example: "https://example.com"
+        type:
+          type: string
+          enum:
+            - RECTANGLE
+            - SQUARE
+          example: RECTANGLE
+        image:
+          type: string
+          format: binary

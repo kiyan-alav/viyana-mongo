@@ -9,3 +9,7 @@ servers:
 tags:
   - name: Auth
     description: Authentication endpoints
+  - name: Admin => Banners
+    description: Manage admin banners
+  - name: Banners
+    description: Banners core data
