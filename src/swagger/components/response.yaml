@@ -2,6 +2,8 @@ components:
   responses:
     Created:
       description: Resource created successfully
+    Success:
+      description: OK
     BadRequest:
       description: Bad request
       content:
