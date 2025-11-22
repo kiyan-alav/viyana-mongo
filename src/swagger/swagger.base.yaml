@@ -11,5 +11,9 @@ tags:
     description: Authentication endpoints
   - name: Admin => Banners
     description: Manage admin banners
+  - name: Admin => Messages
+    description: Manage admin messages
   - name: Banners
     description: Banners core data
+  - name: Messages
+    description: Messages send data

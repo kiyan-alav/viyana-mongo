@@ -6,3 +6,10 @@ export interface IMessage extends Document {
   title: string;
   text: string;
 }
+
+export interface CreateMessageData {
+  sender: string;
+  email: string;
+  title: string;
+  text: string;
+}

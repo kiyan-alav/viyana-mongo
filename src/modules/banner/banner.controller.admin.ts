@@ -1,19 +1,30 @@
 import { Request, Response } from "express";
 import { ENV } from "../../configs/env";
-import { ApiResponse } from "../../utils/ApiResponse";
+import { ApiListResponse, ApiResponse } from "../../utils/ApiResponse";
 import { catchAsync } from "../../utils/catchAsync";
+import { paginateQuery, paginateResponse } from "../../utils/pagination";
 import { bannerAdminService } from "./banner.service.admin";
 
 export const bannerAdminController = {
   list: catchAsync(async (req: Request, res: Response) => {
-    const bannersList = await bannerAdminService.list();
+    const { pageNumber, pageSize, skip } = paginateQuery(req);
+    const { data, totalCount } = await bannerAdminService.list(skip, pageSize);
 
-    const result = bannersList.map((banner) => ({
+    const result = data.map((banner) => ({
       ...banner.toObject(),
       image: `${ENV.BASE_URL}/public/banners/${banner.image}`,
     }));
 
-    return res.status(200).json(new ApiResponse(true, "", result));
+    return res
+      .status(200)
+      .json(
+        new ApiListResponse(
+          true,
+          "",
+          result,
+          paginateResponse(pageNumber, pageSize, totalCount)
+        )
+      );
   }),
 
   create: catchAsync(async (req: Request, res: Response) => {

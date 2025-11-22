@@ -45,6 +45,10 @@ export const setupSwagger = (app: Application) => {
     swaggerDoc,
     loadYamlFile(path.join(componentsDir, "response.yaml"))
   );
+  swaggerDoc = mergeComponents(
+    swaggerDoc,
+    loadYamlFile(path.join(componentsDir, "parameters.yaml"))
+  );
 
   fs.readdirSync(schemasDir).forEach((file) => {
     swaggerDoc = mergeComponents(

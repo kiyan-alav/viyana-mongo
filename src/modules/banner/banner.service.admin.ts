@@ -1,12 +1,13 @@
 import { ApiError } from "../../utils/ApiError";
+import { paginateModel } from "../base.services";
 import Banner from "./banner.model";
 import { CreateBannerData, UpdateBannerData } from "./banner.types";
 
 export const bannerAdminService = {
-  async list() {
-    const bannersList = await Banner.find().select("-__v");
+  async list(skip: number, pageSize: number) {
+    const { data, totalCount } = await paginateModel(Banner, skip, pageSize);
 
-    return bannersList;
+    return { data, totalCount };
   },
 
   async create(data: CreateBannerData) {

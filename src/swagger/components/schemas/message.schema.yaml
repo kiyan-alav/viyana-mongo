@@ -1,0 +1,22 @@
+components:
+  schemas:
+    CreateMessage:
+      type: object
+      required:
+        - title
+        - text
+        - email
+      properties:
+        sender:
+          type: string
+          example: "Kiyan Alavi"
+        email:
+          type: string
+          format: email
+          example: "kian@example.com"
+        title:
+          type: string
+          example: "string"
+        text:
+          type: string
+          example: "string"
