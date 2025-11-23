@@ -2,7 +2,7 @@ paths:
   /admin/message/list:
     get:
       tags:
-        - Admin => Messages
+        - Admin => Message
       summary: Get list of messages
       security:
         - BearerAuth: []
@@ -20,7 +20,7 @@ paths:
   /admin/message/{id}:
     delete:
       tags:
-        - Admin => Messages
+        - Admin => Message
       summary: Delete message by id
       security:
         - BearerAuth: []
@@ -45,7 +45,7 @@ paths:
   /message/:
     post:
       tags:
-        - Messages
+        - Message
       summary: Create a new message
       security:
         - BearerAuth: []

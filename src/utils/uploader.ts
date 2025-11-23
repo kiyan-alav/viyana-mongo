@@ -25,3 +25,4 @@ export const makeUploader = (folder: string) => {
 
 export const userAvatarUpload = makeUploader("users/avatars");
 export const bannerUpload = makeUploader("banners");
+export const categoryUpload = makeUploader("categories");

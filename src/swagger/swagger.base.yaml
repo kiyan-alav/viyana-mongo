@@ -9,11 +9,15 @@ servers:
 tags:
   - name: Auth
     description: Authentication endpoints
-  - name: Admin => Banners
+  - name: Admin => Banner
     description: Manage admin banners
-  - name: Admin => Messages
+  - name: Admin => Category
+    description: Manage admin banners
+  - name: Admin => Message
     description: Manage admin messages
-  - name: Banners
+  - name: Banner
     description: Banners core data
-  - name: Messages
+  - name: Category
+    description: Categories core data
+  - name: Message
     description: Messages send data

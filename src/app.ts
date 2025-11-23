@@ -5,10 +5,12 @@ import path from "path";
 import { errorHandler } from "./middlewares/errorHandler";
 import authRouter from "./modules/auth/auth.routes";
 import bannerAdminRouter from "./modules/banner/banner.routes.admin";
-import { setupSwagger } from "./swagger/swagger";
 import bannerCoreRouter from "./modules/banner/banner.routes.core";
+import categoryAdminRouter from "./modules/category/category.routes.admin";
+import categoryCoreRouter from "./modules/category/category.routes.core";
 import messageAdminRouter from "./modules/message/message.routes.admin";
 import messageCoreRouter from "./modules/message/message.routes.core";
+import { setupSwagger } from "./swagger/swagger";
 
 const app = express();
 
@@ -27,9 +29,13 @@ app.use("/api/auth", authRouter);
 app.use("/api/admin/banner", bannerAdminRouter);
 app.use("/api/banner", bannerCoreRouter);
 
-// ! Banner
+// ! Message
 app.use("/api/admin/message", messageAdminRouter);
 app.use("/api/message", messageCoreRouter);
+
+// ! Category
+app.use("/api/admin/category", categoryAdminRouter);
+app.use("/api/category", categoryCoreRouter);
 
 // ! Error Handler
 app.use(errorHandler);

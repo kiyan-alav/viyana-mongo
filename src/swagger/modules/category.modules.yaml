@@ -1,11 +1,14 @@
 paths:
-  /admin/banner/list:
+  /admin/category/list:
     get:
       tags:
-        - Admin => Banner
-      summary: Get list of banners
+        - Admin => Category
+      summary: Get list of categories
       security:
         - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/PageNumber"
+        - $ref: "#/components/parameters/PageSize"
       responses:
         "200":
           $ref: "#/components/responses/Success"
@@ -14,18 +17,18 @@ paths:
         "403":
           $ref: "#/components/responses/NotAllowed"
 
-  /admin/banner:
+  /admin/category:
     post:
       tags:
-        - Admin => Banner
-      summary: Create a new banner
+        - Admin => Category
+      summary: Create a new category
       security:
         - BearerAuth: []
       requestBody:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/CreateBanner"
+              $ref: "#/components/schemas/CreateCategory"
       responses:
         "201":
           $ref: "#/components/responses/Created"
@@ -36,11 +39,11 @@ paths:
         "403":
           $ref: "#/components/responses/NotAllowed"
 
-  /admin/banner/{id}:
+  /admin/category/{id}:
     put:
       tags:
-        - Admin => Banner
-      summary: Update existing banner
+        - Admin => Category
+      summary: Update existing category
       security:
         - BearerAuth: []
       parameters:
@@ -53,7 +56,7 @@ paths:
         content:
           multipart/form-data:
             schema:
-              $ref: "#/components/schemas/UpdateBanner"
+              $ref: "#/components/schemas/UpdateCategory"
       responses:
         "200":
           $ref: "#/components/responses/Success"
@@ -68,8 +71,8 @@ paths:
 
     delete:
       tags:
-        - Admin => Banner
-      summary: Delete banner by id
+        - Admin => Category
+      summary: Delete category by id
       security:
         - BearerAuth: []
       parameters:
@@ -90,11 +93,11 @@ paths:
         "403":
           $ref: "#/components/responses/NotAllowed"
 
-  /banner/list:
+  /category/list:
     get:
       tags:
-        - Banner
-      summary: Get list of banners
+        - Category
+      summary: Get list of categories
       responses:
         "200":
           $ref: "#/components/responses/Success"

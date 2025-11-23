@@ -1,0 +1,22 @@
+components:
+  schemas:
+    CreateCategory:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: "category"
+        image:
+          type: string
+          format: binary
+    UpdateCategory:
+      type: object
+      properties:
+        name:
+          type: string
+          example: "category"
+        image:
+          type: string
+          format: binary
