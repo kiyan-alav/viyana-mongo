@@ -28,7 +28,7 @@ export const generateRefreshToken = (data: Record<string, string>) => {
   return token;
 };
 
-const objectIdSchema = z.string().refine((val) => Types.ObjectId.isValid(val), {
+export const objectIdSchema = z.string().refine((val) => Types.ObjectId.isValid(val), {
   message: "Invalid MongoDB ObjectId",
 });
 

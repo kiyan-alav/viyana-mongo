@@ -3,12 +3,15 @@ import { ApiResponse } from "../../utils/ApiResponse";
 import { catchAsync } from "../../utils/catchAsync";
 import { authService } from "./auth.service";
 import { AuthRequest } from "./auth.types";
+import { ENV } from "../../configs/env";
 
 export const authController = {
   register: catchAsync(async (req: Request, res: Response) => {
     const userData = {
       ...req.body,
-      avatar: req.file ? req.file.filename : "",
+      avatar: req.file
+        ? `${ENV.BASE_URL}/public/users/avatars/${req.file.filename}`
+        : "",
     };
     const user = await authService.register(userData);
     return res

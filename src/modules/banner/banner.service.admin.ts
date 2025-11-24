@@ -31,19 +31,15 @@ export const bannerAdminService = {
   },
 
   async update({ data, id }: UpdateBannerData) {
-    const banner = await Banner.findById(id);
+    const updatedBanner = await Banner.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
 
-    if (!banner) {
+    if (!updatedBanner) {
       throw new ApiError(404, "Banner not found");
     }
 
-    if (data.link !== undefined) banner.link = data.link;
-    if (data.type !== undefined) banner.type = data.type;
-    if (data.image !== undefined && data.image !== "")
-      banner.image = data.image;
-
-    await banner.save();
-
-    return banner;
+    return updatedBanner;
   },
 };

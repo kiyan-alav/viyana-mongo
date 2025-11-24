@@ -32,18 +32,15 @@ export const categoryAdminService = {
   },
 
   async update({ id, data }: UpdateCategoryData) {
-    const category = await Category.findById(id);
+    const updatedCategory = await Category.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
 
-    if (!category) {
+    if (!updatedCategory) {
       throw new ApiError(404, "Category not found");
     }
 
-    if (data.name !== undefined) category.name = data.name;
-    if (data.image !== undefined && data.image !== "")
-      category.image = data.image;
-
-    await category.save();
-
-    return category;
+    return updatedCategory;
   },
 };

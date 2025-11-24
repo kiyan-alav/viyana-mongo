@@ -36,8 +36,8 @@ bannerAdminRouter
     authMiddleware,
     authorizeRoles("ADMIN"),
     validateRequest(paramsSchema, "params"),
-    validateRequest(updateBannerSchema, "body"),
     bannerUpload.single("image"),
+    validateRequest(updateBannerSchema, "body"),
     bannerAdminController.update
   );
 

@@ -39,8 +39,8 @@ categoryAdminRouter
     authMiddleware,
     authorizeRoles("ADMIN"),
     validateRequest(paramsSchema, "params"),
-    validateRequest(updateCategorySchema, "body"),
     categoryUpload.single("image"),
+    validateRequest(updateCategorySchema, "body"),
     categoryAdminController.update
   );
 

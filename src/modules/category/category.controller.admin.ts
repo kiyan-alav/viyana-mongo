@@ -13,18 +13,13 @@ export const categoryAdminController = {
       pageSize
     );
 
-    const result = data.map((category) => ({
-      ...category.toObject(),
-      image: `${ENV.BASE_URL}/public/categories/${category.image}`,
-    }));
-
     return res
       .status(200)
       .json(
         new ApiListResponse(
           true,
           "",
-          result,
+          data,
           paginateResponse(pageNumber, pageSize, totalCount)
         )
       );
@@ -33,7 +28,9 @@ export const categoryAdminController = {
   create: catchAsync(async (req: Request, res: Response) => {
     const categoryData = {
       ...req.body,
-      image: req.file ? req.file.filename : "",
+      image: req.file
+        ? `${ENV.BASE_URL}/public/categories/${req.file.filename}`
+        : "",
     };
     const category = await categoryAdminService.create(categoryData);
 
@@ -57,7 +54,9 @@ export const categoryAdminController = {
 
     const categoryData = {
       ...req.body,
-      ...(req.file && { image: req.file.fieldname }),
+      ...(req.file && {
+        image: `${ENV.BASE_URL}/public/categories/${req.file.filename}`,
+      }),
     };
 
     const category = await categoryAdminService.update({

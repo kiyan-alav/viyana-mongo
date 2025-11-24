@@ -7,7 +7,6 @@ import {
   hashPassword,
   verifyPassword,
 } from "../../utils/auth";
-import { getAvatarUrl } from "../../utils/file";
 import User from "../user/user.model";
 import {
   AuthRequest,
@@ -69,8 +68,6 @@ export const authService = {
     const userPlain = existingUser.toObject();
     Reflect.deleteProperty(userPlain, "password");
     Reflect.deleteProperty(userPlain, "id");
-
-    userPlain.avatar = getAvatarUrl(userPlain.avatar);
 
     await User.findByIdAndUpdate(existingUser._id, {
       $set: {

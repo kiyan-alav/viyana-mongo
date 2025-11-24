@@ -10,18 +10,13 @@ export const bannerAdminController = {
     const { pageNumber, pageSize, skip } = paginateQuery(req);
     const { data, totalCount } = await bannerAdminService.list(skip, pageSize);
 
-    const result = data.map((banner) => ({
-      ...banner.toObject(),
-      image: `${ENV.BASE_URL}/public/banners/${banner.image}`,
-    }));
-
     return res
       .status(200)
       .json(
         new ApiListResponse(
           true,
           "",
-          result,
+          data,
           paginateResponse(pageNumber, pageSize, totalCount)
         )
       );
@@ -30,7 +25,9 @@ export const bannerAdminController = {
   create: catchAsync(async (req: Request, res: Response) => {
     const bannerData = {
       ...req.body,
-      image: req.file ? req.file.filename : "",
+      image: req.file
+        ? `${ENV.BASE_URL}/public/banners/${req.file.filename}`
+        : "",
     };
     const banner = await bannerAdminService.create(bannerData);
     return res
@@ -51,7 +48,9 @@ export const bannerAdminController = {
 
     const bannerData = {
       ...req.body,
-      ...(req.file && { image: req.file.filename }),
+      ...(req.file && {
+        image: `${ENV.BASE_URL}/public/banners/${req.file.filename}`,
+      }),
     };
 
     const banner = await bannerAdminService.update({

@@ -11,3 +11,19 @@ export interface IProduct extends Document {
   productImages: string[];
   comment?: mongoose.Types.ObjectId;
 }
+
+export interface CreateProductData {
+  title: string;
+  price: number;
+  category: mongoose.Types.ObjectId;
+  stock: number;
+  discount: number;
+  specifications: string;
+  details: string;
+  productImages: string[];
+}
+
+export interface UpdateProductData {
+  id: string;
+  data: CreateProductData;
+}

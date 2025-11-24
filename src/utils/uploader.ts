@@ -1,6 +1,8 @@
 import fs from "fs";
-import multer from "multer";
+import multer, { FileFilterCallback } from "multer";
 import path from "path";
+import { ApiError } from "./ApiError";
+import { Request } from "express";
 
 export const makeUploader = (folder: string) => {
   const uploadDir = path.join(__dirname, "..", "..", "public", folder);
@@ -15,14 +17,34 @@ export const makeUploader = (folder: string) => {
     },
     filename: function (req, file, cb) {
       const ext = path.extname(file.originalname);
-      const uniqueName = Date.now() + "-" + ext;
+      const uniqueName =
+        Date.now() + "-" + Math.round(Math.random() * 1e9) + ext;
+
       cb(null, uniqueName);
     },
   });
 
-  return multer({ storage });
+  const fileFilter = (
+    req: Request,
+    file: Express.Multer.File,
+    cb: FileFilterCallback
+  ) => {
+    const allowed = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
+
+    if (!allowed.includes(file.mimetype)) {
+      return cb(new ApiError(400, "Only image files are allowed!"));
+    }
+
+    cb(null, true);
+  };
+
+  return multer({
+    storage,
+    fileFilter,
+  });
 };
 
 export const userAvatarUpload = makeUploader("users/avatars");
 export const bannerUpload = makeUploader("banners");
 export const categoryUpload = makeUploader("categories");
+export const productUpload = makeUploader("products");
