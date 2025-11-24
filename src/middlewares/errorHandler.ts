@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import multer from "multer";
 import { ApiError } from "../utils/ApiError";
 import { ApiResponse } from "../utils/ApiResponse";
 
@@ -8,8 +9,15 @@ export const errorHandler = (
   res: Response,
   next: NextFunction
 ) => {
-  const statusCode = err.statusCode || 500;
-  res
-    .status(statusCode)
-    .json(new ApiResponse(false, err.message || "Internal Server Error"));
+  if (err instanceof multer.MulterError) {
+    return res
+      .status(400)
+      .json(new ApiResponse(false, `Upload Error: ${err.message}`));
+  }
+
+  if (err instanceof ApiError) {
+    return res.status(err.statusCode).json(new ApiResponse(false, err.message));
+  }
+
+  res.status(500).json(new ApiResponse(false, "Internal Server Error"));
 };

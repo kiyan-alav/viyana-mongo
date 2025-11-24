@@ -14,18 +14,18 @@ components:
           type: string
           example: "product"
         price:
-          type: number
-          example: 5000000
+          type: string
+          example: "5000000"
         category:
           type: string
           format: objectId
           example: "66ef1203b9e0421ff0e9d2e1"
         stock:
-          type: number
-          example: 10
+          type: string
+          example: "10"
         discount:
-          type: number
-          example: 10
+          type: string
+          example: "10"
         specifications:
           type: string
           example: "Specs here..."
@@ -44,18 +44,18 @@ components:
           type: string
           example: "product"
         price:
-          type: number
-          example: 5000000
+          type: string
+          example: "5000000"
         category:
           type: string
           format: objectId
           example: "66ef1203b9e0421ff0e9d2e1"
         stock:
-          type: number
-          example: 10
+          type: string
+          example: "10"
         discount:
-          type: number
-          example: 10
+          type: string
+          example: "10"
         specifications:
           type: string
           example: "Specs here..."

@@ -39,7 +39,7 @@ paths:
         "403":
           $ref: "#/components/responses/NotAllowed"
 
-  /admin/category/{id}:
+  /admin/product/{id}:
     put:
       tags:
         - Admin => Product

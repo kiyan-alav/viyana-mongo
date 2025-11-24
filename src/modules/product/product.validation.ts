@@ -3,20 +3,20 @@ import { objectIdSchema } from "../../utils/auth";
 
 export const createProductSchema = z.object({
   title: z.string("title is required"),
-  price: z.number("price is required"),
+  price: z.string("price is required"),
   category: objectIdSchema,
-  stock: z.number("stock is required"),
-  discount: z.number().optional(),
+  stock: z.string("stock is required"),
+  discount: z.string().optional(),
   specifications: z.string("specifications is required"),
   details: z.string().optional(),
 });
 
 export const updateProductSchema = z.object({
-  title: z.string(),
-  price: z.number(),
-  category: objectIdSchema,
-  stock: z.number(),
-  discount: z.number().optional(),
-  specifications: z.string(),
+  title: z.string().optional(),
+  price: z.string().optional(),
+  category: objectIdSchema.optional(),
+  stock: z.string().optional(),
+  discount: z.string().optional(),
+  specifications: z.string().optional(),
   details: z.string().optional(),
 });
