@@ -92,7 +92,7 @@ paths:
           $ref: "#/components/responses/UnAuthorized"
         "403":
           $ref: "#/components/responses/NotAllowed"
-    
+
     get:
       tags:
         - Admin => Product
@@ -116,3 +116,42 @@ paths:
           $ref: "#/components/responses/UnAuthorized"
         "403":
           $ref: "#/components/responses/NotAllowed"
+
+  /product/list:
+    get:
+      tags:
+        - Product
+      summary: Get list of products
+      parameters:
+        - $ref: "#/components/parameters/PageNumber"
+        - $ref: "#/components/parameters/PageSize"
+        - name: categoryId
+          in: query
+          required: false
+          description: Filter by category id
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+
+  /product/{id}:
+    get:
+      tags:
+        - Product
+      summary: Get product by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"

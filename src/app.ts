@@ -12,6 +12,7 @@ import messageAdminRouter from "./modules/message/message.routes.admin";
 import messageCoreRouter from "./modules/message/message.routes.core";
 import productAdminRouter from "./modules/product/product.routes.admin";
 import { setupSwagger } from "./swagger/swagger";
+import productCoreRouter from "./modules/product/product.routes.core";
 
 const app = express();
 
@@ -40,6 +41,7 @@ app.use("/api/message", messageCoreRouter);
 
 // ! Product
 app.use("/api/admin/product", productAdminRouter);
+app.use("/api/product", productCoreRouter);
 
 // ! Error Handler
 app.use(errorHandler);

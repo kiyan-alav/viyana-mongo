@@ -9,7 +9,7 @@ export interface IProduct extends Document {
   specifications: string;
   details: string;
   productImages: string[];
-  comment?: mongoose.Types.ObjectId;
+  // comment?: mongoose.Types.ObjectId;
 }
 
 export interface CreateProductData {
@@ -26,4 +26,8 @@ export interface CreateProductData {
 export interface UpdateProductData {
   id: string;
   data: CreateProductData;
+}
+
+export interface CoreProductList {
+  category: string;
 }

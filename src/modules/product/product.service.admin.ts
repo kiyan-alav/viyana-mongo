@@ -20,7 +20,7 @@ export const productAdminService = {
   },
 
   async single(id: string) {
-    const foundedProduct = await Product.findById(id);
+    const foundedProduct = await Product.findById(id).populate("category");
 
     if (!foundedProduct) {
       throw new ApiError(404, "Banner not found");

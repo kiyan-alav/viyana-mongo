@@ -23,3 +23,5 @@ tags:
     description: Categories core data
   - name: Message
     description: Messages send data
+  - name: Product
+    description: Product data
