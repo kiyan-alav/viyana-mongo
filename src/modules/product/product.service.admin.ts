@@ -23,7 +23,7 @@ export const productAdminService = {
     const foundedProduct = await Product.findById(id).populate("category");
 
     if (!foundedProduct) {
-      throw new ApiError(404, "Banner not found");
+      throw new ApiError(404, "Product not found");
     }
 
     return foundedProduct;

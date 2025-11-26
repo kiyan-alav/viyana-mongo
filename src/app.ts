@@ -8,11 +8,13 @@ import bannerAdminRouter from "./modules/banner/banner.routes.admin";
 import bannerCoreRouter from "./modules/banner/banner.routes.core";
 import categoryAdminRouter from "./modules/category/category.routes.admin";
 import categoryCoreRouter from "./modules/category/category.routes.core";
+import commentAdminRouter from "./modules/comment/comment.routes.admin";
+import commentCoreRouter from "./modules/comment/comment.routes.core";
 import messageAdminRouter from "./modules/message/message.routes.admin";
 import messageCoreRouter from "./modules/message/message.routes.core";
 import productAdminRouter from "./modules/product/product.routes.admin";
-import { setupSwagger } from "./swagger/swagger";
 import productCoreRouter from "./modules/product/product.routes.core";
+import { setupSwagger } from "./swagger/swagger";
 
 const app = express();
 
@@ -34,6 +36,10 @@ app.use("/api/banner", bannerCoreRouter);
 // ! Category
 app.use("/api/admin/category", categoryAdminRouter);
 app.use("/api/category", categoryCoreRouter);
+
+// ! Comment
+app.use("/api/admin/comment", commentAdminRouter);
+app.use("/api/comment", commentCoreRouter);
 
 // ! Message
 app.use("/api/admin/message", messageAdminRouter);

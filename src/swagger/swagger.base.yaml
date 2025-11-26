@@ -12,7 +12,9 @@ tags:
   - name: Admin => Banner
     description: Manage admin banners
   - name: Admin => Category
-    description: Manage admin banners
+    description: Manage admin category
+  - name: Admin => Comment
+    description: Manage admin comment
   - name: Admin => Message
     description: Manage admin messages
   - name: Admin => Product
@@ -21,6 +23,8 @@ tags:
     description: Banners core data
   - name: Category
     description: Categories core data
+  - name: Comment
+    description: Comments send data
   - name: Message
     description: Messages send data
   - name: Product

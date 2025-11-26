@@ -33,7 +33,7 @@ export const productCoreService = {
       throw new ApiError(404, "Banner not found");
     }
 
-    const comments = await Comment.find({ product: id })
+    const comments = await Comment.find({ product: id, status: "ACCEPTED" })
       .populate("user", "fullName email")
       .exec();
 

@@ -7,6 +7,7 @@ const CommentSchema = new Schema<IComment>(
       type: Number,
       min: 0,
       max: 5,
+      default: 5,
     },
     commentBody: {
       type: String,

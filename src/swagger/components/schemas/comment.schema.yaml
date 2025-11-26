@@ -1,0 +1,19 @@
+components:
+  schemas:
+    SendComment:
+      type: object
+      properties:
+        rate:
+          type: number
+          example: 5
+        commentBody:
+          type: string
+          example: "string"
+        email:
+          type: string
+          format: email
+          example: "kian@example.com"
+        product:
+          type: string
+          format: objectId
+          example: "66ef1203b9e0421ff0e9d2e1"
