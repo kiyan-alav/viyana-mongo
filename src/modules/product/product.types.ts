@@ -9,13 +9,12 @@ export interface IProduct extends Document {
   specifications: string;
   details: string;
   productImages: string[];
-  // comment?: mongoose.Types.ObjectId;
 }
 
 export interface CreateProductData {
   title: string;
   price: number;
-  category: mongoose.Types.ObjectId;
+  category: string;
   stock: number;
   discount: number;
   specifications: string;

@@ -9,6 +9,8 @@ servers:
 tags:
   - name: Auth
     description: Authentication endpoints
+  - name: Account
+    description: Account endpoints
   - name: Admin => Banner
     description: Manage admin banners
   - name: Admin => Category

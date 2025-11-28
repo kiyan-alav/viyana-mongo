@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import { ApiError } from "../../utils/ApiError";
 import { paginateModel } from "../base.services";
 import Product from "./product.model";
@@ -42,7 +43,7 @@ export const productAdminService = {
     } = data;
 
     return await Product.create({
-      category,
+      category: new mongoose.Types.ObjectId(category),
       details,
       discount,
       price,
@@ -70,10 +71,17 @@ export const productAdminService = {
       throw new ApiError(404, "Product not found");
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(id, data, {
-      new: true,
-      runValidators: true,
-    });
+    const updatedProduct = await Product.findByIdAndUpdate(
+      id,
+      {
+        ...data,
+        category: new mongoose.Types.ObjectId(data.category),
+      },
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
 
     return updatedProduct;
   },

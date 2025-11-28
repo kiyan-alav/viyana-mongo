@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import Comment from "./comment.model";
 import { CommentData } from "./comment.types";
 
@@ -8,8 +9,8 @@ export const commentCoreService = {
       rate,
       commentBody,
       email,
-      product,
-      user,
+      product: new mongoose.Types.ObjectId(product),
+      user: new mongoose.Types.ObjectId(user),
     });
   },
 };

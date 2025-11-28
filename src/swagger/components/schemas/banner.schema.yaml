@@ -3,9 +3,9 @@ components:
     CreateBanner:
       type: object
       required:
-      - link
-      - type
-      - image
+        - link
+        - type
+        - image
       properties:
         link:
           type: string

@@ -1,0 +1,56 @@
+paths:
+  /account:
+    put:
+      tags:
+        - Account
+      summary: Change account info
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: "#/components/schemas/ChangeUserInfo"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+
+  /account/order/list:
+    get:
+      tags:
+        - Account
+      summary: Get account orders
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/PageNumber"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+
+  /account/password:
+    patch:
+      tags:
+        - Account
+      summary: Change account password
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ChangePassword"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"

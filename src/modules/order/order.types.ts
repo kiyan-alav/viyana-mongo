@@ -13,3 +13,11 @@ export interface IOrder extends Document {
   totalQuantity: number;
   totalPrice: number;
 }
+
+export interface OrderData {
+  user: string;
+  items: {
+    product: string;
+    quantity: number;
+  }[];
+}

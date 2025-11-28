@@ -15,5 +15,4 @@ components:
           example: "kian@example.com"
         product:
           type: string
-          format: objectId
           example: "66ef1203b9e0421ff0e9d2e1"

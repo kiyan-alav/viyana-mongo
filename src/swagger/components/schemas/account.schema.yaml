@@ -1,0 +1,34 @@
+components:
+  schemas:
+    ChangePassword:
+      type: object
+      properties:
+        currentPassword:
+          type: string
+          example: "string"
+        password:
+          type: string
+          example: "string"
+        confirm:
+          type: string
+          example: "string"
+
+    ChangeUserInfo:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: "string"
+        lastName:
+          type: string
+          example: "string"
+        email:
+          type: string
+          format: email
+          example: "kian@example.com"
+        mobile:
+          type: string
+          example: "09365584552"
+        avatar:
+          type: string
+          format: binary

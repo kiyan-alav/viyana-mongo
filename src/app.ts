@@ -14,7 +14,9 @@ import messageAdminRouter from "./modules/message/message.routes.admin";
 import messageCoreRouter from "./modules/message/message.routes.core";
 import productAdminRouter from "./modules/product/product.routes.admin";
 import productCoreRouter from "./modules/product/product.routes.core";
+import userRouter from "./modules/user/user.routes.user";
 import { setupSwagger } from "./swagger/swagger";
+import orderCoreRouter from "./modules/order/order.routes.core";
 
 const app = express();
 
@@ -45,9 +47,15 @@ app.use("/api/comment", commentCoreRouter);
 app.use("/api/admin/message", messageAdminRouter);
 app.use("/api/message", messageCoreRouter);
 
+// ! Order
+app.use("/api/order", orderCoreRouter);
+
 // ! Product
 app.use("/api/admin/product", productAdminRouter);
 app.use("/api/product", productCoreRouter);
+
+// ! User
+app.use("/api/account", userRouter);
 
 // ! Error Handler
 app.use(errorHandler);

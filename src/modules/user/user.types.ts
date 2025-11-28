@@ -11,5 +11,23 @@ export interface IUser extends Document {
   refreshToken?: string;
   avatar?: string;
   isActive: boolean;
-  orders?: mongoose.Types.ObjectId;
+  orders?: mongoose.Types.ObjectId[];
+}
+
+export interface UpdateUserData {
+  id: string;
+  data: {
+    firstName: string;
+    lastName: string;
+    mobile: string;
+    email: string;
+  };
+}
+
+export interface UpdatePassword {
+  id: string;
+  data: {
+    currentPassword: string;
+    password: string;
+  };
 }

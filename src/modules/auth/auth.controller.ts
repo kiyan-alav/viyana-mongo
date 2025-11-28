@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
+import { ENV } from "../../configs/env";
 import { ApiResponse } from "../../utils/ApiResponse";
 import { catchAsync } from "../../utils/catchAsync";
 import { authService } from "./auth.service";
 import { AuthRequest } from "./auth.types";
-import { ENV } from "../../configs/env";
 
 export const authController = {
   register: catchAsync(async (req: Request, res: Response) => {
