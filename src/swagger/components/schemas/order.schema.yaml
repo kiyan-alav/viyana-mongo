@@ -1,0 +1,21 @@
+components:
+  schemas:
+    RegisterNewOrder:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            required:
+              - product
+              - quantity
+            properties:
+              product:
+                type: string
+                example: "66ef1203b9e0421ff0e9d2e1"
+              quantity:
+                type: integer
+                example: 1

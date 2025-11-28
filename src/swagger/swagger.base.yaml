@@ -29,5 +29,7 @@ tags:
     description: Comments send data
   - name: Message
     description: Messages send data
+  - name: Order
+    description: Register new order
   - name: Product
     description: Product data

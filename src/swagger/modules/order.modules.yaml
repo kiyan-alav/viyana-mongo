@@ -1,0 +1,20 @@
+paths:
+  /order:
+    post:
+      tags:
+        - Order
+      summary: Register new order
+      security:
+        - BearerAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RegisterNewOrder"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"

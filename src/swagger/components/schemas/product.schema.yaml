@@ -36,6 +36,7 @@ components:
           items:
             type: string
             format: binary
+    
     UpdateProduct:
       type: object
       properties:
