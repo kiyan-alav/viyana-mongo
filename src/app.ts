@@ -17,6 +17,7 @@ import productCoreRouter from "./modules/product/product.routes.core";
 import userRouter from "./modules/user/user.routes.user";
 import { setupSwagger } from "./swagger/swagger";
 import orderCoreRouter from "./modules/order/order.routes.core";
+import userAdminRouter from "./modules/user/user.routes.admin";
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use("/api/admin/product", productAdminRouter);
 app.use("/api/product", productCoreRouter);
 
 // ! User
+app.use("/api/admin/user", userAdminRouter);
 app.use("/api/account", userRouter);
 
 // ! Error Handler

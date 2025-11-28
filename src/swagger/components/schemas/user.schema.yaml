@@ -1,0 +1,13 @@
+components:
+  schemas:
+    UpdateUserOrder:
+      type: object
+      required:
+       - status
+      properties:
+        status:
+          type: string
+          enum:
+            - PENDING
+            - ACCEPTED
+            - CANCELED

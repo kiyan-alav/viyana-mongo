@@ -21,6 +21,8 @@ tags:
     description: Manage admin messages
   - name: Admin => Product
     description: Manage admin products
+  - name: Admin => User
+    description: Manage users
   - name: Banner
     description: Banners core data
   - name: Category

@@ -1,0 +1,97 @@
+paths:
+  /admin/user/list:
+    get:
+      tags:
+        - Admin => User
+      summary: Get list of users
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: "#/components/parameters/PageNumber"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+          "200":
+            $ref: "#/components/responses/Success"
+          "401":
+            $ref: "#/components/responses/UnAuthorized"
+          "403":
+            $ref: "#/components/responses/NotAllowed"
+
+  /admin/user/{id}/order/list:
+    get:
+      tags:
+        - Admin => User
+      summary: Get user orders list
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - $ref: "#/components/parameters/PageNumber"
+        - $ref: "#/components/parameters/PageSize"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+        "403":
+          $ref: "#/components/responses/NotAllowed"
+
+  /admin/user/{id}/ban:
+    patch:
+      tags:
+        - Admin => User
+      summary: Change user status
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+        "403":
+          $ref: "#/components/responses/NotAllowed"
+
+  /admin/user/order/{id}/status:
+    patch:
+      tags:
+        - Admin => User
+      summary: Change user order status
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserOrder"
+      responses:
+        "200":
+          $ref: "#/components/responses/Success"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "401":
+          $ref: "#/components/responses/UnAuthorized"
+        "403":
+          $ref: "#/components/responses/NotAllowed"
+

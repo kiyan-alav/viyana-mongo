@@ -35,3 +35,10 @@ export const changeUserInfoSchema = z.object({
 
   email: z.email("Invalid email format").optional(),
 });
+
+export const changeUserOrderStatusSchema = z.object({
+  status: z.enum(
+    ["PENDING", "ACCEPTED", "CANCELED"],
+    "must be PENDING/ACCEPTED/CANCELED"
+  ),
+});
